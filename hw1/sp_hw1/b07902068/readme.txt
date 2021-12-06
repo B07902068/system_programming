@@ -1,0 +1,4 @@
+Reference about lock on a single server(one process): B07902084 
+I do I/O multiplexing by calling select() to decide whether to call accept(), and call select() to check whether each connection is ready for read.
+I use fcntl() to lock a particular region of file, this make sure that multiple requests from different servers are correct dealt.
+However, I couldn't figure out how to prevent a locked region from being accessed by a request from the same server that lock the region. Therefore, I asked B07902084 for some advice. Based on his advice, I use a one-dimentional array to distinguish whether an account is lock.
